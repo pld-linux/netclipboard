@@ -1,5 +1,6 @@
+# TODO: optflags
 Summary:	Transparent cross-platform clipboard synchronization
-#Summary(pl.UTF-8):	-
+Summary(pl.UTF-8):	Przezroczysta, wieloplatformowa synchronizacja schowka
 Name:		netclipboard
 Version:	0.60
 Release:	0.1
@@ -13,7 +14,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Transparent cross-platform clipboard synchronization.
 
-#%description -l pl.UTF-8
+%description -l pl.UTF-8
+Przezroczysta, wieloplatformowa synchronizacja schowka.
 
 %prep
 %setup -q -n %{name}
