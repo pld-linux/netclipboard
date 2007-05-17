@@ -1,4 +1,3 @@
-# TODO: optflags
 Summary:	Transparent cross-platform clipboard synchronization
 Summary(pl.UTF-8):	Przezroczysta, wieloplatformowa synchronizacja schowka
 Name:		netclipboard
@@ -9,6 +8,8 @@ Group:		Applications
 Source0:	http://dl.sourceforge.net/netclipboard/%{name}-%{version}.tar
 # Source0-md5:	c59fbf9e44bc838bb5e5973c5c01efb6
 URL:		http://netclipboard.sourceforge.net/
+BuildRequires:	qmake
+BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -21,8 +22,13 @@ Przezroczysta, wieloplatformowa synchronizacja schowka.
 %setup -q -n %{name}
 
 %build
-qmake
-QTDIR=/usr %{__make}
+qmake \
+	QMAKE_CXX="%{__cxx}" \
+	QMAKE_LINK="%{__cxx}" \
+	QMAKE_CXXFLAGS_RELEASE="%{rpmcflags}" \
+	QMAKE_LFLAGS="%{rpmldflags}"
+%{__make} \
+	QTDIR=/usr
 
 %install
 rm -rf $RPM_BUILD_ROOT
